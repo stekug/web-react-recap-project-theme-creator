@@ -2,13 +2,13 @@ import { useState } from 'react';
 import './Color.css';
 
 export default function Color({ color, deleteColor }) {
-  const [confirmationMSG, setConfirmationMSG] = useState(false);
+  const [showConfirmationMSG, setShowConfirmationMessage] = useState(false);
 
-  const clickHandler = () => {
-    setConfirmationMSG(!confirmationMSG);
+  const handleConfirmationMessage = () => {
+    setShowConfirmationMessage(!showConfirmationMSG);
   };
 
-  const deleteHandler = (id) => {
+  const handleDelete = (id) => {
     deleteColor(id);
   };
 
@@ -23,13 +23,13 @@ export default function Color({ color, deleteColor }) {
       <h3 className="color-card-headline">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      {!confirmationMSG ? (
-        <button onClick={clickHandler}>DELETE</button>
+      {!showConfirmationMSG ? (
+        <button onClick={handleConfirmationMessage}>DELETE</button>
       ) : (
         <>
           <p className="color-card-highlight">Really Delete?</p>
-          <button onClick={() => setConfirmationMSG(!confirmationMSG)}>CANCEL</button>
-          <button onClick={() => deleteHandler(color.id)}>DELETE</button>
+          <button onClick={() => setShowConfirmationMessage(!showConfirmationMSG)}>CANCEL</button>
+          <button onClick={() => handleDelete(color.id)}>DELETE</button>
         </>
       )}
     </div>
