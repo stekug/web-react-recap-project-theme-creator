@@ -23,7 +23,7 @@ export default function ColorForm({ colorSubmit }) {
     <form className="color-form" onSubmit={handleSubmit}>
       {/* Role */}
       <label htmlFor="role">Role</label>
-      <input type="text" name="role" id="role" />
+      <input type="text" name="role" id="role" required />
       {/* Hex */}
       <label htmlFor="hex">Hex</label>
       <input type="text" name="hex" id="hex" value={hexColor} onChange={updateHexColor} />
@@ -33,7 +33,9 @@ export default function ColorForm({ colorSubmit }) {
       <input type="text" name="contrastText" id="contrastText" value={hexContrast} onChange={updateHexContrast} />
       <input type="color" name="hexContrast" id="hexContrast" value={hexContrast} onChange={updateHexContrast} />
       {/* Button */}
-      <button className="color-form__button">ADD COLOR</button>
+      <button className="color-form__button" aria-label="add color">
+        ADD COLOR
+      </button>
     </form>
   );
 }
