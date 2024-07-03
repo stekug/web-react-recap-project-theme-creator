@@ -17,6 +17,12 @@ export default function App() {
     });
   };
 
+  const updateColor = (id, updatedColor) => {
+    setColorArray((prevColorArray) => {
+      return prevColorArray.map((color) => (color.id === id ? { ...color, ...updatedColor } : color));
+    });
+  };
+
   return (
     <>
       <h1>Theme Creator</h1>
@@ -27,7 +33,9 @@ export default function App() {
         </p>
       )}
       {colorArray.map((color) => {
-        return <Color key={color.id} color={color} deleteColor={() => deleteColor(color.id)} />;
+        return (
+          <Color key={color.id} color={color} deleteColor={() => deleteColor(color.id)} updateColor={updateColor} />
+        );
       })}
     </>
   );

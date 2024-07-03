@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import './ColorForm.css';
 
-export default function ColorForm({ colorSubmit, buttonName }) {
-  const [hexColor, setHexColor] = useState('#ff004c');
-  const [hexContrast, setHexContrast] = useState('#FFFFFF');
+export default function ColorForm({ colorSubmit, buttonName, colorData }) {
+  const [role, setRole] = useState(colorData?.role || '');
+  const [hexColor, setHexColor] = useState(colorData?.hex || '#ff004c');
+  const [hexContrast, setHexContrast] = useState(colorData?.contrastText || '#FFFFFF');
 
   const updateHexColor = (event) => {
     setHexColor(event.target.value);
@@ -11,6 +12,10 @@ export default function ColorForm({ colorSubmit, buttonName }) {
 
   const updateHexContrast = (event) => {
     setHexContrast(event.target.value);
+  };
+
+  const updateRole = (event) => {
+    setRole(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -23,7 +28,15 @@ export default function ColorForm({ colorSubmit, buttonName }) {
     <form className="color-form" onSubmit={handleSubmit}>
       {/* Role */}
       <label htmlFor="role">Role</label>
-      <input type="text" name="role" id="role" required />
+      <input
+        type="text"
+        name="role"
+        id="role"
+        required
+        value={role}
+        onChange={updateRole}
+        placeholder="Your Role Name"
+      />
       {/* Hex */}
       <label htmlFor="hex">Hex</label>
       <input type="text" name="hex" id="hex" value={hexColor} onChange={updateHexColor} />

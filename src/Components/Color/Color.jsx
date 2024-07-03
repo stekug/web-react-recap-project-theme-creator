@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Color.css';
 import ColorForm from '../ColorForm/ColorForm';
 
-export default function Color({ color, deleteColor }) {
+export default function Color({ color, deleteColor, updateColor }) {
   const [showConfirmationMSG, setShowConfirmationMessage] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
 
@@ -27,7 +27,14 @@ export default function Color({ color, deleteColor }) {
           <h3 className="color-card-headline">{color.hex}</h3>
           <h4>{color.role}</h4>
           <p>contrast: {color.contrastText}</p>
-          <ColorForm buttonName={'UPDATE COLOR'} />
+          <ColorForm
+            buttonName={'UPDATE COLOR'}
+            colorData={color}
+            colorSubmit={(updatedColor) => {
+              updateColor(color.id, updatedColor);
+              setShowEditForm(false);
+            }}
+          />
           <button onClick={() => setShowEditForm(!showEditForm)}>CANCEL</button>
         </div>
       </>
