@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ColorForm.css';
 
-export default function ColorForm({ colorSubmit }) {
+export default function ColorForm({ colorSubmit, buttonName }) {
   const [hexColor, setHexColor] = useState('#ff004c');
   const [hexContrast, setHexContrast] = useState('#FFFFFF');
 
@@ -34,7 +34,7 @@ export default function ColorForm({ colorSubmit }) {
       <input type="color" name="hexContrast" id="hexContrast" value={hexContrast} onChange={updateHexContrast} />
       {/* Button */}
       <button className="color-form__button" aria-label="add color">
-        ADD COLOR
+        {buttonName}
       </button>
     </form>
   );

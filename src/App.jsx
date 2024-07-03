@@ -20,7 +20,7 @@ export default function App() {
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm colorSubmit={addColor} />
+      <ColorForm colorSubmit={addColor} buttonName={'ADD COLOR'} />
       {!colorArray.length && (
         <p style={{ color: 'hotpink' }}>
           <strong>No Colors...Start by adding one!</strong>
